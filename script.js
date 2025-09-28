@@ -109,3 +109,9 @@ if (window.location.href.indexOf("profile") > 0) {
 if (window.location.href.indexOf("/www.") > 0) {
   window.location.href = window.location.href.replace("/www.", "/");
 }
+// Thêm đoạn code này để hiển thị thông báo khi trang web tải xong
+$(document).ready(function() {
+    // Thêm class 'tbc2c' để hiển thị thông báo (.tbc2) và lớp phủ (.ovltbc2)
+    $('.tbc2').addClass('tbc2c');
+    $('.ovltbc2').addClass('tbc2c');
+});
