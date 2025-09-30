@@ -2399,87 +2399,52 @@ display: none;}
           display: inline-block;
         }
         /*
- * ĐOẠN CODE SỬA LỖI BỐ CỤC 4 KHUNG NGANG HÀNG
- * Áp dụng cho phần tử chứa các khung (thường là .owl-stage) và các khung con (.item)
+ /*
+ * BƯỚC 1: SỬA LỖI BỐ CỤC BẰNG CSS
+ * Ghi đè trực tiếp lên class của Owl Carousel (.owl-item)
  */
 
-/* 1. Bắt buộc các phần tử tính toán chiều rộng bao gồm padding/border */
-* {
-    box-sizing: border-box;
-}
-
-/* 2. Áp dụng Flexbox cho phần tử chứa các khung (Parent Container) */
-/* Cần tìm đúng selector của phần tử chứa 4 khung. Giả định là .tt1 .table .btw .owl-stage */
-.tt1 .table .btw .owl-stage-outer .owl-stage {
-    display: flex !important; /* Bật Flexbox */
-    flex-wrap: nowrap !important; /* Ngăn các khung bị đẩy xuống hàng */
-    width: 100% !important;
-    /* Reset Owl Carousel float nếu có */
-    float: none !important; 
-    transform: none !important; /* Loại bỏ transform có thể gây lỗi vị trí */
-}
-
-/* 3. Định nghĩa chiều rộng và khoảng cách chính xác cho mỗi khung (Child Item) */
-.tt1 .table .btw .item {
-    /* Đảm bảo mỗi khung chiếm chính xác 1/4 chiều rộng */
-    width: 25% !important; 
-    /* Ngăn khung bị co lại */
-    flex-shrink: 0; 
-    /* Có thể thêm padding để tạo khoảng cách giữa các khung */
-    padding: 0 5px; 
-    /* Đảm bảo không có float không mong muốn */
-    float: none !important;
-}
-
-/* 4. Điều chỉnh cho màn hình nhỏ (Nếu cần) */
-/* Nếu bạn muốn trên điện thoại (màn hình < 768px), chúng hiển thị 2 khung/hàng */
-@media screen and (max-width: 767px) {
-    .tt1 .table .btw .item {
-        width: 50% !important; /* 2 khung/hàng trên màn hình nhỏ */
-    }
-}
-/* * SỬA LỖI BỐ CỤC RESPONSIVE
- * Khắc phục lỗi hiển thị 2 khung ngang hàng trên máy tính
- */
-
-/* 1. Thiết lập mặc định cho tất cả màn hình (điện thoại) - MỖI KHUNG MỘT HÀNG */
-.tt1 .table .btw .item {
-    /* Đảm bảo mỗi khung chiếm toàn bộ chiều rộng (100%) trên điện thoại */
-    width: 100% !important; 
-    float: none !important; /* Đảm bảo không có float gây lỗi */
-    flex-basis: auto !important;
-}
-
-
-/* 2. Áp dụng cho MÀN HÌNH LỚN (Máy tính/Laptop) - 2 KHUNG NGANG HÀNG */
-/* Dùng Media Query để chỉ áp dụng cho màn hình có chiều rộng từ 768px trở lên */
+/* Áp dụng cho MÀN HÌNH LỚN (Máy tính) - 2 KHUNG NGANG HÀNG */
 @media screen and (min-width: 768px) {
-    
-    /* ************* BẮT BUỘC KHUNG CHA SỬ DỤNG FLEXBOX ************* */
-    /* (Áp dụng cho .owl-stage hoặc phần tử chứa 4 khung) */
+    /* Quan trọng: Buộc phần tử chứa (stage) phải chấp nhận bố cục mới */
     .tt1 .table .btw .owl-stage {
         display: flex !important;
-        flex-wrap: wrap !important; /* Cho phép các khung xuống dòng */
-        width: 100% !important;
-        transform: none !important;
-    }
-    .tt1 .table .btw .owl-stage-outer {
-        overflow: visible !important; /* Đảm bảo nội dung không bị cắt */
+        flex-wrap: wrap !important; 
+        width: 100% !important; 
+        transform: none !important; /* Vô hiệu hóa dịch chuyển ngang của carousel */
+        float: none !important;
     }
 
-    /* ************* ĐỊNH DẠNG KHUNG CON ************* */
-    .tt1 .table .btw .item {
-        /* Trên máy tính, mỗi khung chiếm 50% chiều rộng (2 khung ngang) */
+    /* GHI ĐÈ LÊN THUỘC TÍNH RỘNG ĐỘNG CỦA MỖI SLIDE (.owl-item) */
+    .tt1 .table .btw .owl-item {
+        /* Bắt buộc chiều rộng là 50% */
         width: 50% !important; 
-        /* Đảm bảo tính toán lề đúng */
-        box-sizing: border-box !important;
-        padding: 0 10px !important; /* Tạo khoảng cách giữa 2 khung */
+        max-width: 50% !important; 
+        min-width: 50% !important;
+        flex: 0 0 50% !important; 
         
-        /* Reset các thuộc tính của carousel/slider có thể gây lỗi */
+        box-sizing: border-box !important;
+        padding: 0 10px !important;
+        transform: none !important; /* Vô hiệu hóa transform */
         float: none !important;
-        flex-shrink: 0 !important;
-        flex-grow: 0 !important;
-        margin: 0 !important;
-        transform: none !important;
+    }
+    
+    /* Đảm bảo các khung không bị ẩn đi */
+    .tt1 .table .btw .owl-item.cloned {
+        display: block !important;
+    }
+}
+
+/* Áp dụng cho MÀN HÌNH NHỎ (Điện thoại) - 1 KHUNG DỌC */
+@media screen and (max-width: 767px) {
+    .tt1 .table .btw .owl-item {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 100% !important;
+        flex: 0 0 100% !important;
+        padding: 0 10px !important;
+    }
+    .tt1 .table .btw .owl-stage {
+        transform: none !important; /* Quan trọng cho di động */
     }
 }
