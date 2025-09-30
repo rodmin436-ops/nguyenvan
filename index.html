@@ -22,29 +22,38 @@ img:is([sizes="auto"] i, [sizes^="auto"] i) {
 
 <!-- CSS fix 2 box -->
 <style>
+/* Container 2 box */
 #uyt .b {
   display: flex !important;
-  justify-content: space-between !important;
-  align-items: flex-start !important;
-  flex-wrap: wrap !important;
+  justify-content: center !important;
+  align-items: stretch !important;
   gap: 20px !important;
+  flex-wrap: nowrap !important; /* không cho xuống dòng */
 }
 
+/* Box con */
 #uyt .b1,
 #uyt .b2 {
-  flex: 1 1 48% !important;
+  flex: 0 0 48% !important;  /* mỗi box chiếm 48% */
   max-width: 48% !important;
   box-sizing: border-box !important;
+  display: block !important; /* ép lại block bình thường */
 }
 
+/* Mobile tự xuống hàng */
 @media (max-width: 767px) {
+  #uyt .b {
+    flex-wrap: wrap !important; /* cho phép xuống hàng */
+  }
   #uyt .b1,
   #uyt .b2 {
-    flex: 1 1 100% !important;
+    flex: 0 0 100% !important;
     max-width: 100% !important;
   }
 }
+
 </style>
+
 
 
 	
