@@ -57,77 +57,64 @@ function fetch() {
     },
   });
 }
+// PHƯƠNG PHÁP CUỐI CÙNG: ÁP DỤNG STYLE LIÊN TỤC BẰNG JAVASCRIPT
+// Mã này sẽ ghi đè trực tiếp Inline Style mà thư viện thêm vào.
 
-// Close modal functionality
-$(".ess").click(function () {
-  $(this).css("display", "none");
-  $(".ifr").css("display", "none");
-});
-
-// Redirect to HTTPS if on HTTP (Lưu ý: Dòng này có thể không cần thiết nếu server đã cấu hình sẵn)
-if (window.location.protocol == 'http:') { 
-  window.location.href =  window.location.href.replace( 'http:', 'https:'); 
-}
-// BỔ SUNG CODE JAVASCRIPT: VÔ HIỆU HÓA INLINE STYLE VÀ TRANSFORM CỦA CAROUSEL
-// Đảm bảo chạy sau khi tất cả nội dung trang đã load.
-
-function fixOwlCarouselLayout() {
+function applyResponsiveFix() {
     var $targetItems = $('.tt1 .table .btw .owl-item');
     var $targetStage = $('.tt1 .table .btw .owl-stage');
+    var windowWidth = $(window).width();
     
-    // XÓA style="width: xxx; transform: translate3d..." do JS thêm vào trên từng khung
-    $targetItems.each(function() {
-        $(this).removeAttr('style'); 
-    });
-    
-    // XÓA style="width: xxx; transform: translate3d..." trên phần tử chứa
-    $targetStage.removeAttr('style'); 
+    // Chỉ áp dụng FIX 2 CỘT NGANG HÀNG TRÊN MÁY TÍNH
+    if (windowWidth >= 768) {
+        // Áp dụng cho phần tử chứa: buộc Flexbox và loại bỏ Transform
+        $targetStage.css({
+            'display': 'flex',
+            'flex-wrap': 'wrap',
+            'width': '100%',
+            'transform': 'none' // Vô hiệu hóa dịch chuyển ngang
+        });
+
+        // Áp dụng cho từng khung: buộc 50% chiều rộng
+        $targetItems.each(function() {
+            $(this).css({
+                'width': '50%',
+                'max-width': '50%',
+                'flex': '0 0 50%',
+                'transform': 'none'
+            });
+            // Xóa style đã được thêm vào trước đó để tránh xung đột
+            $(this).removeAttr('style'); 
+        });
+        
+    } 
+    // Áp dụng FIX 1 CỘT TRÊN ĐIỆN THOẠI
+    else {
+        // Áp dụng cho từng khung: buộc 100% chiều rộng
+        $targetItems.each(function() {
+            $(this).css({
+                'width': '100%',
+                'max-width': '100%',
+                'flex': '0 0 100%',
+                'transform': 'none'
+            });
+            $(this).removeAttr('style'); 
+        });
+        $targetStage.css('transform', 'none');
+    }
 }
 
-// Chạy hàm sửa lỗi sau khi trang đã load hoàn toàn
-$(window).on('load', function() {
-    // Chạy fix ngay lập tức
-    fixOwlCarouselLayout();
+// Bắt đầu chạy fix ngay sau khi trang load
+$(document).ready(function() {
+    // Chạy fix ban đầu
+    applyResponsiveFix();
     
-    // Chạy fix lần nữa sau 100ms để bắt các tính toán sau cùng của thư viện
-    setTimeout(fixOwlCarouselLayout, 100); 
-    
-    // Chạy fix khi người dùng thay đổi kích thước cửa sổ (responsive)
+    // Bỏ comment dòng này để fix chạy LIÊN TỤC mỗi 500ms
+    // Nếu các cách trước đó thất bại, đây là giải pháp duy nhất để thắng được thư viện khác
+    setInterval(applyResponsiveFix, 500); 
+
+    // Chạy fix khi người dùng thay đổi kích thước cửa sổ
     $(window).on('resize', function() {
-        fixOwlCarouselLayout();
-    });
-});
-// BỔ SUNG CODE JAVASCRIPT: VÔ HIỆU HÓA INLINE STYLE VÀ TRANSFORM CỦA CAROUSEL
-
-function fixOwlCarouselLayout() {
-    var $targetItems = $('.tt1 .table .btw .owl-item');
-    var $targetStage = $('.tt1 .table .btw .owl-stage');
-    
-    // XÓA style="width: xxx; transform: translate3d..." do JS thêm vào
-    $targetItems.each(function() {
-        $(this).removeAttr('style'); 
-    });
-    
-    // XÓA style="width: xxx; transform: translate3d..." trên phần tử chứa
-    $targetStage.removeAttr('style'); 
-}
-
-// Chạy hàm sửa lỗi sau khi trang đã load hoàn toàn
-$(window).on('load', function() {
-    // Chạy fix ngay lập tức
-    fixOwlCarouselLayout();
-    
-    // Chạy fix lần nữa sau 100ms để bắt các tính toán sau cùng của thư viện
-    setTimeout(fixOwlCarouselLayout, 100); 
-    
-    // Chạy fix lặp lại liên tục sau mỗi 500ms (CHỈ DÙNG KHI CÁC CÁCH TRÊN THẤT BẠI)
-    // Nếu các cách trên không hoạt động, hãy bỏ comment đoạn dưới đây:
-    /*
-    setInterval(fixOwlCarouselLayout, 500); 
-    */
-
-    // Chạy fix khi người dùng thay đổi kích thước cửa sổ (responsive)
-    $(window).on('resize', function() {
-        fixOwlCarouselLayout();
+        applyResponsiveFix();
     });
 });
