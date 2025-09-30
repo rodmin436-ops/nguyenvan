@@ -14,9 +14,14 @@ window.location.href = window.location.href.replace('/www.', '/');
     <link rel="profile" href="https://gmpg.org/xfn/11">
 	<link rel="stylesheet" id="h-style-css" href="https://admin.checkscam.vn/wp-content/themes/hungdevwp/style.css?ver=8.5" type="text/css" media="all">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
-	<style>img:is([sizes="auto" i], [sizes^="auto," i]) { contain-intrinsic-size: 3000px 1500px }</style>
-    <style>
-/* --- Fix 2 box nằm ngang --- */
+	<style>
+img:is([sizes="auto"] i, [sizes^="auto"] i) {
+  contain-intrinsic-size: 3000px 1500px;
+}
+</style>
+
+<!-- CSS fix 2 box -->
+<style>
 #uyt .b {
   display: flex !important;
   justify-content: space-between !important;
@@ -32,7 +37,6 @@ window.location.href = window.location.href.replace('/www.', '/');
   box-sizing: border-box !important;
 }
 
-/* Mobile xuống hàng */
 @media (max-width: 767px) {
   #uyt .b1,
   #uyt .b2 {
@@ -41,6 +45,7 @@ window.location.href = window.location.href.replace('/www.', '/');
   }
 }
 </style>
+
 
 	
 	<!-- This site is optimized with the Yoast SEO plugin v24.0 - https://yoast.com/wordpress/plugins/seo/ -->
