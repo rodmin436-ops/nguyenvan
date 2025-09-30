@@ -97,3 +97,37 @@ $(window).on('load', function() {
         fixOwlCarouselLayout();
     });
 });
+// BỔ SUNG CODE JAVASCRIPT: VÔ HIỆU HÓA INLINE STYLE VÀ TRANSFORM CỦA CAROUSEL
+
+function fixOwlCarouselLayout() {
+    var $targetItems = $('.tt1 .table .btw .owl-item');
+    var $targetStage = $('.tt1 .table .btw .owl-stage');
+    
+    // XÓA style="width: xxx; transform: translate3d..." do JS thêm vào
+    $targetItems.each(function() {
+        $(this).removeAttr('style'); 
+    });
+    
+    // XÓA style="width: xxx; transform: translate3d..." trên phần tử chứa
+    $targetStage.removeAttr('style'); 
+}
+
+// Chạy hàm sửa lỗi sau khi trang đã load hoàn toàn
+$(window).on('load', function() {
+    // Chạy fix ngay lập tức
+    fixOwlCarouselLayout();
+    
+    // Chạy fix lần nữa sau 100ms để bắt các tính toán sau cùng của thư viện
+    setTimeout(fixOwlCarouselLayout, 100); 
+    
+    // Chạy fix lặp lại liên tục sau mỗi 500ms (CHỈ DÙNG KHI CÁC CÁCH TRÊN THẤT BẠI)
+    // Nếu các cách trên không hoạt động, hãy bỏ comment đoạn dưới đây:
+    /*
+    setInterval(fixOwlCarouselLayout, 500); 
+    */
+
+    // Chạy fix khi người dùng thay đổi kích thước cửa sổ (responsive)
+    $(window).on('resize', function() {
+        fixOwlCarouselLayout();
+    });
+});

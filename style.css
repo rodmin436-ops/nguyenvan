@@ -2512,3 +2512,63 @@ display: none;}
         padding: 0 10px !important;
     }
 }
+/*
+ * BỘ CODE SỬA LỖI RESPONSIVE (2 CỘT PC | 1 CỘT MOBILE)
+ * Quy tắc ưu tiên cao nhất để ghi đè mọi xung đột CSS và Inline Style.
+ */
+
+/* 1. Thiết lập chung: Đảm bảo mô hình hộp hoạt động đúng */
+.tt1 .table .btw .owl-item {
+    box-sizing: border-box !important;
+}
+
+/* 2. BỐ CỤC CHO MÀN HÌNH LỚN (MÁY TÍNH: >= 768px) */
+@media screen and (min-width: 768px) {
+    
+    /* Ghi đè lên phần tử chứa (owl-stage) - Vô hiệu hóa tính năng dịch chuyển/trượt */
+    .tt1 .table .btw .owl-stage {
+        display: flex !important; 
+        flex-wrap: wrap !important; /* Cho phép các khung xuống dòng */
+        width: 100% !important;
+        height: auto !important; 
+        transform: none !important; /* Vô hiệu hóa transform dịch chuyển ngang */
+        float: none !important;
+    }
+
+    /* GHI ĐÈ LÊN TỪNG KHUNG (.owl-item) */
+    .tt1 .table .btw .owl-item {
+        /* BẮT BUỘC mỗi khung chiếm 50% */
+        width: 50% !important; 
+        max-width: 50% !important; 
+        min-width: 50% !important;
+        flex: 0 0 50% !important; 
+        
+        /* Loại bỏ các giá trị do Owl Carousel tính toán */
+        transform: none !important; 
+        margin: 0 !important;
+        padding: 0 10px !important; /* Khoảng cách giữa các khung */
+        float: none !important;
+    }
+    
+    /* Đảm bảo các khung ẩn (cloned items) cũng được hiển thị */
+    .tt1 .table .btw .owl-item.cloned {
+        display: block !important;
+    }
+}
+
+/* 3. BỐ CỤC CHO MÀN HÌNH NHỎ (ĐIỆN THOẠI: < 768px) */
+@media screen and (max-width: 767px) {
+    .tt1 .table .btw .owl-stage {
+        transform: none !important;
+        height: auto !important;
+    }
+    .tt1 .table .btw .owl-item {
+        /* Bắt buộc chiều rộng 100% */
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 100% !important;
+        flex: 0 0 100% !important;
+        transform: none !important;
+        padding: 0 10px !important;
+    }
+}
