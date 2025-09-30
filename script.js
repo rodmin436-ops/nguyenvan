@@ -68,3 +68,26 @@ $(".ess").click(function () {
 if (window.location.protocol == 'http:') { 
   window.location.href =  window.location.href.replace( 'http:', 'https:'); 
 }
+// BƯỚC 2: SỬA LỖI BỐ CỤC BẰNG JAVASCRIPT
+// Chạy sau khi trang web đã load hoàn toàn
+
+$(window).on('load', function() {
+    // 1. Tạm dừng và hủy Owl Carousel trên màn hình lớn
+    if ($(window).width() >= 768) {
+        // Nếu carousel đã được khởi tạo, hủy nó đi để nó không thêm style
+        var owl = $('.tt1 .table .btw .owl-carousel');
+        if (owl.hasClass('owl-loaded')) {
+            owl.trigger('destroy.owl.carousel').removeClass('owl-carousel owl-loaded');
+        }
+
+        // 2. XÓA INLINE STYLE VÀ ÁP DỤNG CSS CẦN THIẾT
+        // Tìm tất cả các phần tử slide và xóa thuộc tính 'style'
+        $('.tt1 .table .btw .owl-item').each(function() {
+            // Xóa mọi style inline do thư viện thêm vào
+            $(this).removeAttr('style'); 
+        });
+        
+        // Xóa style trên phần tử stage
+        $('.tt1 .table .btw .owl-stage').removeAttr('style'); 
+    }
+});
