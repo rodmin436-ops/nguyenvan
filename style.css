@@ -2398,3 +2398,43 @@ display: none;}
           background: url(a/i/sc.png) no-repeat center center;
           display: inline-block;
         }
+        /*
+ * ĐOẠN CODE SỬA LỖI BỐ CỤC 4 KHUNG NGANG HÀNG
+ * Áp dụng cho phần tử chứa các khung (thường là .owl-stage) và các khung con (.item)
+ */
+
+/* 1. Bắt buộc các phần tử tính toán chiều rộng bao gồm padding/border */
+* {
+    box-sizing: border-box;
+}
+
+/* 2. Áp dụng Flexbox cho phần tử chứa các khung (Parent Container) */
+/* Cần tìm đúng selector của phần tử chứa 4 khung. Giả định là .tt1 .table .btw .owl-stage */
+.tt1 .table .btw .owl-stage-outer .owl-stage {
+    display: flex !important; /* Bật Flexbox */
+    flex-wrap: nowrap !important; /* Ngăn các khung bị đẩy xuống hàng */
+    width: 100% !important;
+    /* Reset Owl Carousel float nếu có */
+    float: none !important; 
+    transform: none !important; /* Loại bỏ transform có thể gây lỗi vị trí */
+}
+
+/* 3. Định nghĩa chiều rộng và khoảng cách chính xác cho mỗi khung (Child Item) */
+.tt1 .table .btw .item {
+    /* Đảm bảo mỗi khung chiếm chính xác 1/4 chiều rộng */
+    width: 25% !important; 
+    /* Ngăn khung bị co lại */
+    flex-shrink: 0; 
+    /* Có thể thêm padding để tạo khoảng cách giữa các khung */
+    padding: 0 5px; 
+    /* Đảm bảo không có float không mong muốn */
+    float: none !important;
+}
+
+/* 4. Điều chỉnh cho màn hình nhỏ (Nếu cần) */
+/* Nếu bạn muốn trên điện thoại (màn hình < 768px), chúng hiển thị 2 khung/hàng */
+@media screen and (max-width: 767px) {
+    .tt1 .table .btw .item {
+        width: 50% !important; /* 2 khung/hàng trên màn hình nhỏ */
+    }
+}
