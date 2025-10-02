@@ -20,57 +20,51 @@ img:is([sizes="auto"] i, [sizes^="auto"] i) {
 }
 </style>
 
-<!-- CSS fix 2 box -->
 <style>
-/* Container 2 box */
-#uyt .b {
-  display: flex !important;
-  justify-content: center !important;
-  align-items: stretch !important;
-  gap: 20px !important;
-  flex-wrap: nowrap !important; /* không cho xuống dòng */
+/* contains a box */
+#opt sb {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: stretch !important;
+    gap: 10px !important;
+    flex-wrap: wrap !important;
 }
 
-/* Box con */
-#uyt .b1,
-#uyt .b2 {
-  flex: 0 0 48% !important;  /* mỗi box chiếm 48% */
-  max-width: 48% !important;
-  box-sizing: border-box !important;
-  display: block !important; /* ép lại block bình thường */
-}
-
-/* Mobile tự xuống hàng */
-@media (max-width: 767px) {
-  #uyt .b {
-    flex-wrap: wrap !important; /* cho phép xuống hàng */
-  }
-  #uyt .b1,
-  #uyt .b2 {
-    flex: 0 0 100% !important;
+/* box con */
+#opt sb > * {
+    flex: 1 1 auto !important;
     max-width: 100% !important;
-  }
+    box-sizing: border-box !important;
+    display: block !important;
 }
 
+/* Mobile */
+@media (max-width: 767px) {
+    #opt sb {
+        flex-wrap: wrap !important;
+    }
+    
+    #opt sb > * {
+        flex: 1 1 100% !important;
+        max-width: 100% !important;
+    }
+}
 </style>
-
-
-
 	
 	<!-- This site is optimized with the Yoast SEO plugin v24.0 - https://yoast.com/wordpress/plugins/seo/ -->
-	<title>[Nguyễn Văn] BH 100.000.000.vnđ tại Checkscam.vn</title>
-	<meta name="description" content="Checkscam Cam Kết Bảo Hiểm 100.000.000.vnđ cho mọi giao dịch của bạn với &quot;Nguyễn Văn&quot; khi bạn tuân theo Nội Quy Giao Dịch của Checkscam">
-	<link rel="canonical" href="https://rodmin436-ops.github.io/nguyenvan/">
+	<title>[ Tuấn Phạm ] BH 2.500.000.vnđ tại Checkscam.vn</title>
+	<meta name="description" content="Checkscam Cam Kết Bảo Hiểm 2.500.000.vnđ cho mọi giao dịch của bạn với &quot;Tuấn Phạm&quot; khi bạn tuân theo Nội Quy Giao Dịch của Checkscam">
+	<link rel="canonical" href="https://rodmin436-ops.github.io/tuan-pham/">
 	<meta property="og:locale" content="vi_VN">
 	<meta property="og:type" content="article">
-	<meta property="og:title" content="[ Nguyễn Văn ] BH 100.000.000.vnđ tại Checkscam.vn">
-	<meta property="og:description" content="Checkscam Cam Kết Bảo Hiểm 100.000.000.vnđ cho mọi giao dịch của bạn với &quot;Nguyễn Văn&quot; khi bạn tuân theo Nội Quy Giao Dịch của Checkscam">
-	<meta property="og:url" content="https://rodmin436-ops.github.io/nguyenvan/">
+	<meta property="og:title" content="[ Tuấn Phạm ] BH 2.500.000.vnđ tại Checkscam.vn">
+	<meta property="og:description" content="Checkscam Cam Kết Bảo Hiểm 100.000.000.vnđ cho mọi giao dịch của bạn với &quot;Tuấn Phạm&quot; khi bạn tuân theo Nội Quy Giao Dịch của Checkscam">
+	<meta property="og:url" content="https://rodmin436-ops.github.io/tuan-pham/">
 	<meta property="og:site_name" content="QUỸ BẢO HIỂM CHECKSCAM.VN">
 	<meta property="article:modified_time" content="2025-09-25T12:38:54+00:00">
-    <meta property="og:image" content="https://rodmin436-ops.github.io/anh-nguyen-van/Screenshot%202025-09-28%20145138.png">
-    <meta property="og:image:width" content="966">
-    <meta property="og:image:height" content="488">
+    <meta property="og:image" content="https://rodmin436-ops.github.io/anh-tuan-pham/Screenshot%202025-10-02%20110348.png">
+    <meta property="og:image:width" content="1387">
+    <meta property="og:image:height" content="798">
     <meta property="og:image:type" content="image/png">
 
 
@@ -397,7 +391,7 @@ right: 6px;
                                 <img class="dd" src="data:image/jpeg;base64,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">
 
 
-                <h1>Nguyễn Văn</h1>
+                <h1>Tuấn Phạm</h1>
             	<p class="aab">
 
 <!--        <p class="a1" style="display:inline-block;width:100%;margin-bottom: 30px;"></p> -->
@@ -437,7 +431,7 @@ right: 6px;
 
                          <span>Quỹ Bảo Hiểm CS:</span>
 
-                        <p>Từ ngày <span style="color: red;font-weight: bold">21/08/2025</span> <b>CS sẽ bảo đảm an toàn cho bạn </b> với số tiền nằm trong Quỹ Bảo Hiểm <strong>100.000.000.vnđ</strong> của <strong>Nguyễn Văn</strong></p>
+                        <p>Từ ngày <span style="color: red;font-weight: bold">21/08/2025</span> <b>CS sẽ bảo đảm an toàn cho bạn </b> với số tiền nằm trong Quỹ Bảo Hiểm <strong>2.500.000.vnđ</strong> của <strong>Tuấn Phạm</strong></p>
 												<a href="https://checkscam.vn/" target="_blank">
     <img src="data:image/webp;base64,UklGRmQEAABXRUJQVlA4WAoAAAAwAAAAYwAAYwAASUNDUMgBAAAAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADZWUDhMdQIAAC9jwBgQ7xHzHwrbtm2DkO2kuxEoEEhEaQXDhBYQi28STHFNthQLOaQVC8AGCExMtgkYsBiQbtvash0fLp+OR/Pp7m72PP/TwvM8b12v/hHRfwZuGynKwvFd5pheAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA7CVJktxs2+dckiTTHhc7tu1+TbKoZbdduZ1kiXyjWXmWLJfvtSpX58J5//rluzmL052YhnJhKnJiatKvfJx3+dQtnx9H8XSRzYdmLL2mejVq+RjGtGq+WV7oziZY62o6trnGKpuideelUQAPG7H2AO6PlK405+RI6UUnVun8O8O+A2P/qqqqqqqqqqqqqto/cTq40T6PkiRJkiRJkiSLbik2fiH+fpe11ry50j/fzdp5sKF7oLU3/n7y+YfS4+ZMpVozZ9WYV3NWR/oyr/VnwKFZtmJGbxvzfCp1tPX55cvY6Vrz8+ThkVOLc/Ea/K9vBcebMznf/8SZvg7aCm51Y9l5TaSebMU1/kxrhmEYhmEYTm3HvePfHC6vv+xt6qX42h/atyDvfHu/377l7P/6fxQAAA==" "="" alt="ổ khóa" <img="" style="width:100px; height:100px; filter:hue-rotate(345deg) saturate(150%) brightness(1.4); opacity:0.9; position:relative; top:-5px;">
                     </a></div><a href="https://checkscam.vn/" target="_blank">
