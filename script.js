@@ -58,36 +58,45 @@ function fetch() {
   });
 }
 
-// PHẦN FIX RESPONSIVE ĐÃ SỬA ỔN ĐỊNH
+/*
+  RESPONSIVE FIX (SỬA ỔN ĐỊNH)
+  - Không chạy liên tục (không dùng setInterval)
+  - Không xóa style inline của phần tử (không dùng removeAttr)
+  - Chỉ chạy khi load và khi resize
+*/
 function applyResponsiveFix() {
   var $targetItems = $(".tt1 .table .btw .owl-item");
   var $targetStage = $(".tt1 .table .btw .owl-stage");
+
+  // Nếu không tìm thấy các phần tử mục tiêu thì dừng (tránh lỗi)
+  if ($targetItems.length === 0 || $targetStage.length === 0) return;
+
   var windowWidth = $(window).width();
 
-  // FIX 2 CỘT NGANG HÀNG TRÊN MÁY TÍNH
   if (windowWidth >= 768) {
+    // Desktop: 2 cột
     $targetStage.css({
       display: "flex",
-      flexWrap: "wrap",
+      "flex-wrap": "wrap",
       width: "100%",
-      transform: "none", // vô hiệu hóa dịch chuyển ngang
+      transform: "none",
     });
 
     $targetItems.each(function () {
+      // Ghi đè những thuộc tính cần thiết nhưng giữ nguyên các inline style khác
       $(this).css({
         width: "50%",
-        maxWidth: "50%",
+        "max-width": "50%",
         flex: "0 0 50%",
         transform: "none",
       });
     });
-  }
-  // FIX 1 CỘT TRÊN ĐIỆN THOẠI
-  else {
+  } else {
+    // Mobile: 1 cột
     $targetItems.each(function () {
       $(this).css({
         width: "100%",
-        maxWidth: "100%",
+        "max-width": "100%",
         flex: "0 0 100%",
         transform: "none",
       });
@@ -96,13 +105,15 @@ function applyResponsiveFix() {
   }
 }
 
-// Bắt đầu chạy fix ngay sau khi trang load
+// Chạy fix khi load và khi resize (không chạy liên tục bằng setInterval)
 $(document).ready(function () {
-  // Chạy fix ban đầu
   applyResponsiveFix();
-
-  // Chạy lại khi người dùng thay đổi kích thước cửa sổ (chỉ lúc resize)
   $(window).on("resize", function () {
     applyResponsiveFix();
   });
+});
+
+// Run once after full window load to catch plugin init (safe, not continuous)
+$(window).on('load', function(){
+  setTimeout(function(){ applyResponsiveFix(); }, 600);
 });
