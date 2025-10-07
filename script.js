@@ -57,60 +57,52 @@ function fetch() {
     },
   });
 }
-// PHƯƠNG PHÁP CUỐI CÙNG: ÁP DỤNG STYLE LIÊN TỤC BẰNG JAVASCRIPT
-// Mã này sẽ ghi đè trực tiếp Inline Style mà thư viện thêm vào.
 
+// PHẦN FIX RESPONSIVE ĐÃ SỬA ỔN ĐỊNH
 function applyResponsiveFix() {
-    var $targetItems = $('.tt1 .table .btw .owl-item');
-    var $targetStage = $('.tt1 .table .btw .owl-stage');
-    var windowWidth = $(window).width();
-    
-    // Chỉ áp dụng FIX 2 CỘT NGANG HÀNG TRÊN MÁY TÍNH
-    if (windowWidth >= 768) {
-        // Áp dụng cho phần tử chứa: buộc Flexbox và loại bỏ Transform
-        $targetStage.css({
-            'display': 'flex',
-            'flex-wrap': 'wrap',
-            'width': '100%',
-            'transform': 'none' // Vô hiệu hóa dịch chuyển ngang
-        });
+  var $targetItems = $(".tt1 .table .btw .owl-item");
+  var $targetStage = $(".tt1 .table .btw .owl-stage");
+  var windowWidth = $(window).width();
 
-        // Áp dụng cho từng khung: buộc 50% chiều rộng
-        $targetItems.each(function() {
-            $(this).css({
-                'width': '50%',
-                'max-width': '50%',
-                'flex': '0 0 50%',
-                'transform': 'none'
-            });
-            // Xóa style đã được thêm vào trước đó để tránh xung đột
-            $(this).removeAttr('style'); 
-        });
-        
-    } 
-    // Áp dụng FIX 1 CỘT TRÊN ĐIỆN THOẠI
-    else {
-        // Áp dụng cho từng khung: buộc 100% chiều rộng
-        $targetItems.each(function() {
-            $(this).css({
-                'width': '100%',
-                'max-width': '100%',
-                'flex': '0 0 100%',
-                'transform': 'none'
-            });
-            $(this).removeAttr('style'); 
-        });
-        $targetStage.css('transform', 'none');
-    }
+  // FIX 2 CỘT NGANG HÀNG TRÊN MÁY TÍNH
+  if (windowWidth >= 768) {
+    $targetStage.css({
+      display: "flex",
+      flexWrap: "wrap",
+      width: "100%",
+      transform: "none", // vô hiệu hóa dịch chuyển ngang
+    });
+
+    $targetItems.each(function () {
+      $(this).css({
+        width: "50%",
+        maxWidth: "50%",
+        flex: "0 0 50%",
+        transform: "none",
+      });
+    });
+  }
+  // FIX 1 CỘT TRÊN ĐIỆN THOẠI
+  else {
+    $targetItems.each(function () {
+      $(this).css({
+        width: "100%",
+        maxWidth: "100%",
+        flex: "0 0 100%",
+        transform: "none",
+      });
+    });
+    $targetStage.css("transform", "none");
+  }
 }
 
 // Bắt đầu chạy fix ngay sau khi trang load
-$(document).ready(function() {
-    // Chạy fix ban đầu
-    applyResponsiveFix();
+$(document).ready(function () {
+  // Chạy fix ban đầu
+  applyResponsiveFix();
 
-    // Chạy lại khi người dùng thay đổi kích thước cửa sổ (chỉ lúc resize thôi)
-    $(window).on('resize', function() {
-        applyResponsiveFix();
-    });
+  // Chạy lại khi người dùng thay đổi kích thước cửa sổ (chỉ lúc resize)
+  $(window).on("resize", function () {
+    applyResponsiveFix();
+  });
 });
