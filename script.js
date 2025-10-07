@@ -108,12 +108,8 @@ function applyResponsiveFix() {
 $(document).ready(function() {
     // Chạy fix ban đầu
     applyResponsiveFix();
-    
-    // Bỏ comment dòng này để fix chạy LIÊN TỤC mỗi 500ms
-    // Nếu các cách trước đó thất bại, đây là giải pháp duy nhất để thắng được thư viện khác
-    setInterval(applyResponsiveFix, 500); 
 
-    // Chạy fix khi người dùng thay đổi kích thước cửa sổ
+    // Chạy lại khi người dùng thay đổi kích thước cửa sổ (chỉ lúc resize thôi)
     $(window).on('resize', function() {
         applyResponsiveFix();
     });
